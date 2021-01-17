@@ -24,7 +24,7 @@ void loop()
     
     Serial.print("Habarlama derekteri =");
     Serial.println(msg);
-    Serial.write("hh");
+    //Serial.write("hh");
     
     
     double c = esepteu_c(msg, e, n);
