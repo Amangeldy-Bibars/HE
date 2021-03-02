@@ -1,0 +1,167 @@
+//#include <iostream>
+//#include <cstdlib>
+#include<cmath>
+#include <ctime>
+
+//#include<chrono>
+//using namespace std;
+
+unsigned int t1 = 0, t2 = 0, t3 = 0, t4 = 0;
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  
+  int q = 7, x0, n = 2, z1 = 15, a[1000], encr = 0, encr1 = 0, z2 = 5, decr = 0, decr1 = 0;
+  int  p = 5;
+    
+  /*cout << "q:";
+  cin >> q;
+  cout << "p:";
+  cin >> p;
+  cout << "n:";
+  cin >> n;
+  cout << "z1:";
+  cin >> z1;
+  cout << "z2:";
+  cin >> z2;*/
+
+
+  Serial.println( "---Koeficientter---\n");
+  for (int i = 0; i <= n; i++)
+  {
+    Serial.println( "a");
+    Serial.println(i);
+    a[0] = 2;
+    a[1] = -3;
+    
+  }
+  x0 = p / q;
+
+
+
+  //-----------
+
+ 
+  
+  Serial.println( "Shifrlangan polinom Z1:\n");
+  for (int i = 1; i <= n; i++)
+  {
+
+    Serial.print( "(");
+    Serial.print(pow(q, n) * a[i]);
+    Serial.print(")x^(");
+    Serial.print(i);
+    Serial.print(") + ");
+
+  }
+  encr += pow(q, n) * a[0] + z1;
+  for (int i = 0; i <= n; i++)
+  {
+    encr -= pow(q, n - i) * pow(p, i) * a[i];
+  }
+//  Serial.println( "(" + encr + ")");
+
+  
+
+
+  //cout << "Shifrlangan polinom Z2:\n";
+  for (int i = 1; i <= n; i++)
+  {
+
+    //Serial.println( "(" + pow(q, n) * a[i] + ")x^(" + i + ") + ");
+  }
+  encr1 += pow(q, n) * a[0] + z2;
+  for (int i = 0; i <= n; i++)
+  {
+    encr1 -= pow(q, n - i) * pow(p, i) * a[i];
+  }
+  //Serial.println( "(" + encr1 + ")");
+  
+  //----------------------
+  
+  int t1 = micros();
+  
+  //Serial.println( "Shifrlangan polinom Z1:\n");
+  for (int i = 1; i <= n; i++)
+  {
+
+    /*Serial.print( "(");
+    Serial.print(pow(q, n) * a[i]);
+    Serial.print(")x^(");
+    Serial.print(i);
+    Serial.print(") + ");*/
+
+  }
+  encr += pow(q, n) * a[0] + z1;
+  for (int i = 0; i <= n; i++)
+  {
+    encr -= pow(q, n - i) * pow(p, i) * a[i];
+  }
+//  Serial.println( "(" + encr + ")");
+
+  
+
+
+  //cout << "Shifrlangan polinom Z2:\n";
+  for (int i = 1; i <= n; i++)
+  {
+
+    //Serial.println( "(" + pow(q, n) * a[i] + ")x^(" + i + ") + ");
+  }
+  encr1 += pow(q, n) * a[0] + z2;
+  for (int i = 0; i <= n; i++)
+  {
+    encr1 -= pow(q, n - i) * pow(p, i) * a[i];
+  }
+  //Serial.println( "(" + encr1 + ")");
+  
+  int t2 = micros();
+  
+  t3 = t2 - t1;
+
+  Serial.println("----------------");
+  Serial.println("Shifrlenu uakiti : ");
+  Serial.println(t3);
+  Serial.println("----------------");
+  
+  t1 = micros();
+  
+  t2 = micros();
+  
+  t3 = t2 - t1;
+  Serial.println("----------------");
+  Serial.println("Tekseru uakiti : ");
+  Serial.println(t3);
+  Serial.println("----------------");
+
+
+  //Serial.println( "Deshifrlay Z1:\n");
+  for (int i = 0; i <= n; i++)
+  {
+    decr = pow(q, n - i) * pow(p, i) * a[i] - pow(q, n - i) * pow(p, i) * a[i];
+    decr1 = pow(q, n - i) * pow(p, i) * a[i] - pow(q, n - i) * pow(p, i) * a[i];
+  }
+/*
+  decr += z1;
+  cout << "z1 = " << decr;
+  cout << endl;
+  cout << "Deshifrlay Z2:\n";
+  decr1 += z2;
+  cout << "z2 = " << decr1 << endl;
+  cout << "\nz1 + z2 =" << decr + decr1 << endl;
+  cout << "\nz1 * z2 =" << decr * decr1;
+
+  auto endD = chrono::high_resolution_clock::now();
+  chrono::duration<float> durationD = endD - startD;
+  cout << "\nDeshifrlau uakity: " << durationD.count() << endl;*/
+
+  delay(5000);
+}
+
+
+ 
